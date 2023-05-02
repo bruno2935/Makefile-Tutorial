@@ -5,8 +5,6 @@ void *malloc(size_t size) {
     return NULL;
 }
 
-
-void free (void *ptr)
-{
-    //Add code here
+void free(void *ptr) {
+    // Add code here
 }
