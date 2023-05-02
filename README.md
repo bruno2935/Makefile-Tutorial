@@ -1,114 +1,226 @@
 # Makefile-Tutorial
-# EAT THE FROG( SETUP GIT - SETUP BUILD SYSTEM )
-## This project will be used to training how to setup a build system using makefiles
-## Target Name '$@ , Dependencies of the target $^
+
+Patsubst is a function in GNU Make that allows you to substitute parts of a string with a different string. It's often used to generate file names or paths. Here's how you can use patsubst in Markdown:
+
+`$(patsubst pattern,replacement,input)
+`
+s
+
+EAT THE FROG( SETUP GIT - SETUP BUILD SYSTEM )
+
+This project will be used to training how to setup a build system using makefiles
+
+Target Name '$@ , Dependencies of the target $^
+
+  
+  
+  
+  
 
 ### The format is dependencies and then target name
+
 Target_name : Dependencies
-gcc  [dependencies] -o [target_name]
+
+gcc  [dependencies] -o [target_name]
+
 ```Make
+
 all : test.exe
 
-test.exe : test1.o test2.o main.o
-		gcc test1.o test2.o main.o test.exe
-			
-test1.o  : test1.c
-		gcc -c test1.c -o test1.o
+  
 
-test2.o  : test2.c
-		gcc -c test2.c -o test2.o
+test.exe : test1.o test2.o main.o
+
+        gcc test1.o test2.o main.o test.exe
+
+test1.o  : test1.c
+
+        gcc -c test1.c -o test1.o
+
+  
+
+test2.o  : test2.c
+
+        gcc -c test2.c -o test2.o
+
+  
 
 main.o: main.c
-		gcc -c main.c -o main.o
+
+        gcc -c main.c -o main.o
+
+  
 
 clean :
-	 	rm -rf *.o *.exe
+
+        rm -rf *.o *.exe
+
 ```
+
+  
 
 Automatic Variables
+
 1. `$@` - Replace with target name
- gcc  [dependencies] -o [ $@]
+
+ gcc  [dependencies] -o [ $@]
+
 ```Make
+
 all : test.exe
 
-test.exe : test1.o test2.o main.o
-		gcc test1.o test2.o main.o $@
-			
-test1.o  : test1.c
-		gcc -c test1.c -o $@
+  
 
-test2.o  : test2.c
-		gcc -c test2.c -o $@
+test.exe : test1.o test2.o main.o
+
+        gcc test1.o test2.o main.o $@
+
+test1.o  : test1.c
+
+        gcc -c test1.c -o $@
+
+  
+
+test2.o  : test2.c
+
+        gcc -c test2.c -o $@
+
+  
 
 main.o: main.c
-		gcc -c main.c -o $@
+
+        gcc -c main.c -o $@
+
+  
 
 clean :
-		rm -rf *.o *.exe
+
+        rm -rf *.o *.exe
+
 ```
+
+  
 
 2. `$^` - Replace with all pre-requisites(without duplicate)
- gcc  [$^] -o [ $@]
+
+ gcc  [$^] -o [ $@]
+
 ```Make
+
 all : test.exe
 
-test.exe : test1.o test2.o main.o
-		gcc $^ -o $@
-			
-test1.o  : test1.c
-		gcc -c $^ -o $@
+  
 
-test2.o  : test2.c
-		gcc -c $^ -o $@
+test.exe : test1.o test2.o main.o
+
+        gcc $^ -o $@
+
+test1.o  : test1.c
+
+        gcc -c $^ -o $@
+
+  
+
+test2.o  : test2.c
+
+        gcc -c $^ -o $@
+
+  
 
 main.o: main.c
-		gcc -c $^ -o $@
+
+        gcc -c $^ -o $@
+
+  
 
 clean :
-		rm -rf *.o *.exe
+
+        rm -rf *.o *.exe
+
 ```
+
+  
 
 2. `$<` - Replace first pre-requisite
- gcc  [$<] -o [ $@]
+
+ gcc  [$<] -o [ $@]
+
 ```Make
+
 all : test.exe
 
-test.exe : test1.o test2.o main.o
-		gcc $^ -o $@
-			
-test1.o  : test1.c
-		gcc -c $< -o $@
+  
 
-test2.o  : test2.c
-		gcc -c $< -o $@
+test.exe : test1.o test2.o main.o
+
+        gcc $^ -o $@
+
+test1.o  : test1.c
+
+        gcc -c $< -o $@
+
+  
+
+test2.o  : test2.c
+
+        gcc -c $< -o $@
+
+  
 
 main.o: main.c
-		gcc -c $< -o $@
+
+        gcc -c $< -o $@
+
+  
 
 clean :
-		rm -rf *.o *.exe
+
+        rm -rf *.o *.exe
+
 ```
+
+  
 
 3. `$+` - Replace with all pre-requisites (with duplicate)
- gcc  [$+] -o [ $@]
+
+ gcc  [$+] -o [ $@]
+
 ```Make
+
 all : test.exe
 
-test.exe : test1.o test2.o main.o
-		gcc $^ -o $@
-			
-test1.o  : test1.c
-		gcc -c $< -o $@
+  
 
-test2.o  : test2.c
-		gcc -c $< -o $@
+test.exe : test1.o test2.o main.o
+
+        gcc $^ -o $@
+
+test1.o  : test1.c
+
+        gcc -c $< -o $@
+
+  
+
+test2.o  : test2.c
+
+        gcc -c $< -o $@
+
+  
 
 main.o: main.c
-		gcc -c $< -o $@
+
+        gcc -c $< -o $@
+
+  
 
 clean :
-		rm -rf *.o *.exe
+
+        rm -rf *.o *.exe
+
 ```
 
+  
+
 3. `$?` - Replace only with newer pre-requisites
- gcc  [$+] -o [ $@]
+
+ gcc  [$+] -o [ $@]
