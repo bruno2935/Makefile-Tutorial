@@ -1,2 +1,4 @@
 # Makefile-Tutorial
-How to construct a better makefiles
+
+## This project will be used to training how to setup a build system using makefiles
+
