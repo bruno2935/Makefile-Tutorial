@@ -1,5 +1,11 @@
 # Linked Lists
 
-A linked list is a data structure that represents a collection of elements, where each element (**node**) contains two fields: one for storing the data and another for storing a reference (or pointer) to the next node in the list. The first node of the list is called the **head**, and the last node has a reference to a null value, indicating the end of the list.
+1. A linked list is a data structure for storing elements, containing data and a reference to the next node.
+2. The first node is the head, and the last node has a null reference indicating the end.
+3. Linked lists are widely used in computer science.
+4. Each node stores data and a reference to the next node, allowing for efficient addition and removal of elements.
 
-![Alt text](/assets/Linked-list-nodes.png)
+
+<p align="center">
+  <img src="../assets/Linked-list-nodes.png" alt="Alt text">
+</p>
